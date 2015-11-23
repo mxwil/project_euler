@@ -33,17 +33,19 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
 """
 from time import time
 st = time()
-f = open('triangle2.txt')
+f = open('triangle2.txt') #The larger pyramid file
 lines = f.read().split('\n')
-T = [[int(x) for x in line.split()] for line in lines] 
 
-for row in range(len(T)-2,0,-1): 
-        for col in range(row): 
-            MAX_BELOW = max(T[row][col], T[row][col + 1]) 
-            T[row - 1][col] += MAX_BELOW
+T = [[int(x) for x in line.split()] for line in lines] #Create list of lists representing rows of the pyramid
+
+for row in range(len(T)-2,0,-1):  #Start at second from bottom of the pyramid
+        for col in range(row): #Iterate over each number in the row
+        	
+        	#Get the largest out of the two lower numbers e.g. start at 63, choose 62 over 04
+        	max_below = max(T[row][col], T[row][col + 1]) 
+        	#Then add that value to the current position
+        	T[row - 1][col] += max_below
+
+#Now the T data structure represents the maximum value of each position, so T[0][0] is the answer 
 print T[0][0]
 print "Time taken:",time()-st,"seconds."
-
-	# There are (row+1 elements)
-	# Say you are at row 6, with seven elements
-	# Suppose you are at number 5 (index 4), you can reach numbers 5-1 or 5 
