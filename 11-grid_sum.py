@@ -37,7 +37,7 @@ def get_num(m,x,y):
 		return int(m[y][x])
 	except IndexError:
 		return 0
-
+#brute force, could be sped up 
 def search():
 	f = open('grid.txt')
 	lines = f.read().split('\n')
@@ -125,4 +125,5 @@ New highest: Down from 66 at position 15,6
 New highest: Diagonally down and left from 89 at position 6,12
 Checked 969 combinations
 70600674
+Time taken: 0.00565910339355 secs
 """
