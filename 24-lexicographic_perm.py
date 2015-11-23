@@ -6,19 +6,30 @@ A permutation is an ordered arrangement of objects. For example, 3124 is one pos
 
 What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 """
-from math import factorial
+from math import factorial, floor
 from time import time
+
 def nth_perm(n, d):
-	digits, N, result = range(d), n-1, []
-	for n in range(d-1,-1,-1):
-		F = factorial(n)
-		D = int(floor(N/F))%10
-		result.append(str(digits[D]))
+	
+	digits = range(d) #this will initialise an array representing the digits e.g. [0,1,2,3,4,5,6,7,8,9]
+	N = n-1 #e.g. 999999
+	result = []
+	
+	for i in range(d-1,-1,-1): #iterate over the digits 9-0
+		
+		F = factorial(i) 
+		D = int(floor(N/F))%10 #get the last digit of the result when we divide N by factorial(i)
+		
+		result.append(str(digits[D])) #the remainder is the next digit in the permutation
 		digits.pop(D)
-		N %= F
-		if N == 0: break
-	result += [str(s) for s in digits]
-	return (''.join(result))
+		
+		N %= F #set N to the remainder when divided
+		if N == 0: #then we have completed the computation
+			break
+		
+	result += [str(s) for s in digits] #add any unused digits
+	
+	return (''.join(result)) #return the answer as a string
 
 st = time()
 print nth_perm(1000000,10)
