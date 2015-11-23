@@ -31,8 +31,9 @@ def nth_perm(n, d):
 	
 	return (''.join(result)) #return the answer as a string
 
-st = time()
-print nth_perm(1000000,10)
-print 'Took',time()-st,'seconds.'
-
+if __name__ == "__main__":
+	st = time()
+	print nth_perm(1000000,10)
+	print 'Took',time()-st,'seconds.'
+	
 
